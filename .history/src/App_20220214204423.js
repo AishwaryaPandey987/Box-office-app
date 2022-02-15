@@ -5,7 +5,7 @@ import Navs from './components/Navs';
 import Home from './pages/Home';
 import starred from './pages/starred';
 
-// eslint-disable-entire- file react/function-component-definition
+
 function App() {
   return (
     <div>

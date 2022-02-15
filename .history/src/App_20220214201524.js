@@ -1,11 +1,10 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Navs from './components/Navs';
 import Home from './pages/Home';
+// eslint-disable-next-line no-unused-vars
 import starred from './pages/starred';
 
-// eslint-disable-entire- file react/function-component-definition
 function App() {
   return (
     <div>
@@ -16,11 +15,9 @@ function App() {
          <Home/>
         </Route>
 
-        <Route  path="/starred">
-         <starred/>
+        <Route exact path="/starred">
+        <starred/>
         </Route>
-
-        <Route>Not Found.</Route>
       </Switch>
     </div>
   );

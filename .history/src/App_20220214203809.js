@@ -5,7 +5,7 @@ import Navs from './components/Navs';
 import Home from './pages/Home';
 import starred from './pages/starred';
 
-// eslint-disable-entire- file react/function-component-definition
+
 function App() {
   return (
     <div>
@@ -16,11 +16,9 @@ function App() {
          <Home/>
         </Route>
 
-        <Route  path="/starred">
-         <starred/>
+        <Route exact path="/starred">
+        <starred/>
         </Route>
-
-        <Route>Not Found.</Route>
       </Switch>
     </div>
   );
