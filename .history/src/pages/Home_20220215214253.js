@@ -5,7 +5,7 @@
 /* eslint-disable react/self-closing-comp */
 import React, { useState} from 'react'
 import MainpageLayout from '../components/MainpageLayout';
-import { apiGet } from '../misc/config';
+
 // eslint-disable-next-line react/function-component-definition
 const Home = () => {
   const [input, setInput] =useState(' ');
@@ -13,10 +13,13 @@ const Home = () => {
 
   const onsearch =() => {
    
-    apiGet(`search/shows?q=${input}`).then(result => {
-      setresults(result);
-    });
-   
+    fetch(`https://api.tvmaze.com/search/shows?q=${input}`)
+   .then(r=>r.json())
+   .then(result =>{
+     setresults(result);
+     console.log(result);
+
+   });
   };
 
   const onInputchange = ev => {
