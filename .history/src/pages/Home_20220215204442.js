@@ -1,6 +1,3 @@
-/* eslint-disable no-use-before-define */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/self-closing-comp */
 import React, { useState} from 'react'
@@ -10,38 +7,30 @@ import MainpageLayout from '../components/MainpageLayout';
 const Home = () => {
   const [input, setInput] =useState(' ');
 
+  const onInputchange = ev =>{
+    setInput(ev.target.value);
+  };
+
+  const onKeyDown =(ev) => {
+       
+    console.log(ev.keycode);
+  }
+
   const onsearch =() => {
    
     fetch(`https://api.tvmaze.com/search/shows?q=${input}`)
    .then(r=>r.json())
    .then(result =>{
      console.log(result);
-   });
-  };
+   })
 
-  const onInputchange = ev => {
-    setInput(ev.target.value);
-
-  };
-
-const onKeyDown = ev => {
-  if (ev.keyCode===13) {
-      onsearch();
   }
-};
-
-   
-
-
-
   return (
     <MainpageLayout>
-     <input type="text" onChange={onInputchange} onKeyDown={onKeyDown} value={input}/>
+     <input type="text" onChange={onInputchange} onKeyDown={} value={input}/>
       <button type="button" onClick={onsearch} >Search</button>
       </MainpageLayout>
-  );
-
-  
-};
+  )
+}
 
 export default Home;
