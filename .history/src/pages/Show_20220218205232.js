@@ -10,30 +10,18 @@ const Show = () => {
   const [error , setError] = useState(null);
 
   useEffect(() => {
+    apiGet(`/show/${id}?embed[ ]=season&embed[ ]=cast`).then(results => {
+     setTimeout( () =>{
+       setShow(results);
+       setIsLoading(false);
 
-   let  isMounted = true ;
-
-    apiGet(`/shows/${id}?season=cast`)
-    .then(results => {
-  
-       if (isMounted) {
-         setShow(results);
-         setIsLoading(false);
-
-       }
+     },2000);
     })
     .catch( err => {
-      if( isMounted) {
-        setError(err.message);
-        setIsLoading(false);
-
-      }
+      setError(err.message);
+      setIsLoading(false);
 
     });
-
-    return () => {
-      isMounted = false ;
-    };
   }, [id]);
   console.log('show', show);
 

@@ -12,15 +12,17 @@ const Show = () => {
   useEffect(() => {
 
    let  isMounted = true ;
-
+   
     apiGet(`/shows/${id}?season=cast`)
     .then(results => {
-  
+     setTimeout( () =>{
        if (isMounted) {
          setShow(results);
          setIsLoading(false);
 
        }
+
+     },2000);
     })
     .catch( err => {
       if( isMounted) {
