@@ -4,8 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 
 
 import Home from './pages/Home';
-import Starred from './pages/Starred';
-
+import starred from './pages/starred';
 
 
 // eslint-disable-entire- file react/function-component-definition
@@ -18,12 +17,10 @@ function App() {
         </Route>
 
         <Route exact  path="/starred">
-        <Starred/>
+         <starred/>
           </Route>
 
-        <Route>
-          <div>Not found.</div> 
-        </Route>
+        <Route>Not Found.</Route>
       </Switch>
 
   );

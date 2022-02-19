@@ -13,14 +13,14 @@ import { apiGet } from '../misc/config';
 // eslint-disable-next-line react/function-component-definition
 const Home = () => {
   const [input, setInput] = useState(' ');
-  const [results, setResults] = useState(null);
+  const [results, setresults] = useState(null);
   const [searchOption, setSearchOption] = useState('shows');
 
   const isShowsSearch = searchOption === 'shows';
 
-  const onSearch = () => {
+  const onsearch = () => {
     apiGet(`/search/${searchOption}?q=${input}`).then(result => {
-      setResults(result);
+      setresults(result);
     });
   };
 
@@ -30,7 +30,7 @@ const Home = () => {
 
   const onKeyDown = ev => {
     if (ev.keyCode === 13) {
-      onSearch();
+      onsearch();
     }
   };
 
@@ -38,6 +38,7 @@ const Home = () => {
     setSearchOption(ev.target.value);
   };
 
+ 
   const renderResults = () => {
     if (results && results.length === 0) {
       return <div>No results</div>;
@@ -70,7 +71,7 @@ const Home = () => {
             type="radio"
             value="shows"
             checked={isShowsSearch}
-            onChange={onRadioChange}
+            onchange={onRadioChange}
           />
         </label>
 
@@ -81,12 +82,12 @@ const Home = () => {
             type="radio"
             value="people"
             checked={!isShowsSearch}
-            onChange={onRadioChange}
+            onchange={onRadioChange}
           />
         </label>
       </div>
 
-      <button type="button" onClick={onSearch}>
+      <button type="button" onClick={onsearch}>
         Search
       </button>
       {renderResults()}

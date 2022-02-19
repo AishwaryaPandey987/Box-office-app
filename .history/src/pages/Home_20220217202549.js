@@ -70,7 +70,7 @@ const Home = () => {
             type="radio"
             value="shows"
             checked={isShowsSearch}
-            onChange={onRadioChange}
+            onchange={onRadioChange}
           />
         </label>
 
@@ -81,7 +81,7 @@ const Home = () => {
             type="radio"
             value="people"
             checked={!isShowsSearch}
-            onChange={onRadioChange}
+            onchange={onRadioChange}
           />
         </label>
       </div>

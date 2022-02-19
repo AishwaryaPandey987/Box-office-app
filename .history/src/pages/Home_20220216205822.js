@@ -13,14 +13,14 @@ import { apiGet } from '../misc/config';
 // eslint-disable-next-line react/function-component-definition
 const Home = () => {
   const [input, setInput] = useState(' ');
-  const [results, setResults] = useState(null);
+  const [results, setresults ] = useState('null');
   const [searchOption, setSearchOption] = useState('shows');
 
-  const isShowsSearch = searchOption === 'shows';
+  const isShowsSearch = searchOption ==="shows";
 
-  const onSearch = () => {
-    apiGet(`/search/${searchOption}?q=${input}`).then(result => {
-      setResults(result);
+  const onsearch = () => {
+    apiGet(`search/shows?q=${input}`).then(result => {
+      setresults(result);
     });
   };
 
@@ -30,7 +30,7 @@ const Home = () => {
 
   const onKeyDown = ev => {
     if (ev.keyCode === 13) {
-      onSearch();
+      onsearch();
     }
   };
 
@@ -38,16 +38,13 @@ const Home = () => {
     setSearchOption(ev.target.value);
   };
 
+  console.log(searchOption);
   const renderResults = () => {
     if (results && results.length === 0) {
       return <div>No results</div>;
     }
     if (results && results.length > 0) {
-      return results[0].show ? (
-        <ShowGrid data={results} />
-      ) : (
-        <ActorGrid data={results} />
-      );
+      return results[0].show  ? <ShowGrid/> : <ActorGrid/>;
     }
     return null;
   };
@@ -69,8 +66,9 @@ const Home = () => {
             id="shows-search"
             type="radio"
             value="shows"
-            checked={isShowsSearch}
-            onChange={onRadioChange}
+            checked= {isShowsSearch}
+            onchange={onRadioChange}
+            
           />
         </label>
 
@@ -80,13 +78,13 @@ const Home = () => {
             id="actors-search"
             type="radio"
             value="people"
-            checked={!isShowsSearch}
-            onChange={onRadioChange}
+            checked= {!isShowsSearch}
+            onchange={onRadioChange}
           />
         </label>
       </div>
 
-      <button type="button" onClick={onSearch}>
+      <button type="button" onClick={onsearch}>
         Search
       </button>
       {renderResults()}
