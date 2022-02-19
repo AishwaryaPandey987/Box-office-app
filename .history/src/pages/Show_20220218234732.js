@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 /* eslint-disable react/function-component-definition */
 import React, { useEffect, useReducer } from 'react';
 import { useParams } from 'react-router-dom';
@@ -39,7 +38,7 @@ const Show = () => {
   useEffect(() => {
     let isMounted = true;
 
-    apiGet(`/shows/${id}?embed[]=seasons&embed[]=cast`)
+    apiGet(`/shows/${id}?season=cast`)
       .then(results => {
         if (isMounted) {
           dispatch({ type: 'FETCH_SUCCESS', show: results });
@@ -55,7 +54,7 @@ const Show = () => {
       isMounted = false;
     };
   }, [id]);
- 
+  console.log('show', show);
 
   if (isLoading) {
     return <div>Data is being loaded</div>;
@@ -66,29 +65,19 @@ const Show = () => {
 
   return (
     <div>
-      <ShowMainData
-        image={show.image}
-        name={show.name}
-        rating={show.rating}
-        summary={show.summary}
-        tags={show.genres}
-      />
+      <ShowMainData />
 
       <div>
         <h2>Details</h2>
-        <Details
-          status={show.status}
-          network={show.network}
-          premiered={show.premiered}
-        />
+        <Details />
       </div>
       <div>
         <h2>Seasons</h2>
-        <Seasons seasons={show._embedded.seasons} />
+        <Seasons />
       </div>
       <div>
         <h2>Cast</h2>
-        <Cast cast={show._embedded.cast} />
+        <Cast />
       </div>
     </div>
   );

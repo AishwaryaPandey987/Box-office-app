@@ -39,7 +39,7 @@ const Show = () => {
   useEffect(() => {
     let isMounted = true;
 
-    apiGet(`/shows/${id}?embed[]=seasons&embed[]=cast`)
+    apiGet(`/shows/${id}?season=cast`)
       .then(results => {
         if (isMounted) {
           dispatch({ type: 'FETCH_SUCCESS', show: results });
@@ -55,7 +55,7 @@ const Show = () => {
       isMounted = false;
     };
   }, [id]);
- 
+  console.log('show', show);
 
   if (isLoading) {
     return <div>Data is being loaded</div>;
@@ -67,28 +67,32 @@ const Show = () => {
   return (
     <div>
       <ShowMainData
-        image={show.image}
-        name={show.name}
-        rating={show.rating}
-        summary={show.summary}
-        tags={show.genres}
-      />
+      image = {show.image}
+      name = {show.name}
+      rating = {show.rating}
+      summary = {show.summary}
+      tags = {show.genres}
+        />
 
       <div>
         <h2>Details</h2>
         <Details
-          status={show.status}
-          network={show.network}
-          premiered={show.premiered}
-        />
+        status = {show.status}
+        network ={show.network}
+        premiered ={show.premiered}
+         />
       </div>
       <div>
         <h2>Seasons</h2>
-        <Seasons seasons={show._embedded.seasons} />
+        <Seasons
+        seasons ={ show._embedded.seasons}
+         />
       </div>
       <div>
         <h2>Cast</h2>
-        <Cast cast={show._embedded.cast} />
+        <Cast 
+        cast = { show._embedded.cast}
+        />
       </div>
     </div>
   );

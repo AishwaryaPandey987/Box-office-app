@@ -39,7 +39,7 @@ const Show = () => {
   useEffect(() => {
     let isMounted = true;
 
-    apiGet(`/shows/${id}?embed[]=seasons&embed[]=cast`)
+    apiGet(`/shows/${id}?season=cast`)
       .then(results => {
         if (isMounted) {
           dispatch({ type: 'FETCH_SUCCESS', show: results });
@@ -55,7 +55,7 @@ const Show = () => {
       isMounted = false;
     };
   }, [id]);
- 
+  console.log('show', show);
 
   if (isLoading) {
     return <div>Data is being loaded</div>;
