@@ -11,25 +11,10 @@ import ActorGrid from '../components/actor/ActorGrid';
 import MainpageLayout from '../components/MainpageLayout';
 import ShowGrid from '../components/show/ShowGrid';
 import { apiGet } from '../misc/config';
-import { useLastQuery } from '../misc/custom-hook';
+import { useLastQuery, useWhyDidYouUpdate } from '../misc/custom-hook';
 import { SearchInput , RadioInputsWrapper, SearchButtonWrapper} from './Home.styled';
 import CustomRadio from '../components/CustomRadio';
-
-const renderResults = (results) => {
-  if (results && results.length === 0) {
-    return <div>No results</div>;
-  }
-  if (results && results.length > 0) {
-    return results[0].show ? (
-      <ShowGrid data={results} />
-      ) : (
-        <ActorGrid data={results} />
-        );
-      }
-      return null;
-    };
-    
-    // eslint-disable-next-line react/function-component-definition
+// eslint-disable-next-line react/function-component-definition
 const Home = () => {
   const [input, setInput] = useLastQuery();
   const [results, setResults] = useState(null);
@@ -48,7 +33,7 @@ const Home = () => {
     setInput(ev.target.value);
   },[setInput ]);
   
-  const onKeyDown = ev => { 
+  const onKeyDown = ev => {
     if (ev.keyCode === 13) {
       onSearch();
     }
@@ -58,8 +43,21 @@ const Home = () => {
     setSearchOption(ev.target.value);
   },  [ ]);
   
-  
+  const renderResults = () => {
+    if (results && results.length === 0) {
+      return <div>No results</div>;
+    }
+    if (results && results.length > 0) {
+      return results[0].show ? (
+        <ShowGrid data={results} />
+        ) : (
+          <ActorGrid data={results} />
+          );
+        }
+        return null;
+      };
       
+      useWhyDidYouUpdate('home' , { onInputchange, onkeydown });
   return (
     <MainpageLayout>
       <SearchInput
@@ -104,7 +102,7 @@ const Home = () => {
         Search
       </button>
       </SearchButtonWrapper>
-      {renderResults(results)}
+      {renderResults()}
     </MainpageLayout>
   );
 };
