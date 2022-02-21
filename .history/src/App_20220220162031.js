@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Show from './pages/Show';
 import Starred from './pages/Starred';
 
+
 const theme = {
   mainColors: {
     blue: '#2400ff',
@@ -15,24 +16,27 @@ const theme = {
   },
 };
 
+
 // eslint-disable-entire- file react/function-component-definition
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+     <ThemeProvider theme = {theme}>
+
       <Switch>
         <Route exact path="/">
-          <Home />
+         <Home/>
         </Route>
 
-        <Route exact path="/starred">
-          <Starred />
-        </Route>
+        <Route exact  path="/starred">
+        <Starred/>
+          </Route>
 
         <Route exact path="/show/:id">
-          <Show />
+         <Show/>
         </Route>
       </Switch>
-    </ThemeProvider>
+     </ThemeProvider>
+
   );
 }
 

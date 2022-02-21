@@ -43,7 +43,7 @@ export function useLastQuery(key = 'lastquery') {
 
   const setPersistedInput = newState => {
     setInput(newState);
-    sessionStorage.setItem(key, JSON.stringify(newState));
+    sessionStorage.serItem(key, JSON.stringyfy(newState));
   };
   return [input, setPersistedInput];
 }

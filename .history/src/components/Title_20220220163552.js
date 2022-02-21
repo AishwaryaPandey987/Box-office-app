@@ -3,7 +3,7 @@
 /* eslint-disable react/function-component-definition */
 /* eslint-disable no-unused-expressions */
 import React from 'react';
-import { TitleWrapper } from './Title.styled';
+import { TitleWrapper } from './title.styled';
 
 const Title = ({ title, subtitle }) => {
   return (
