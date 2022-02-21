@@ -13,7 +13,7 @@ import ShowGrid from '../components/show/ShowGrid';
 import { apiGet } from '../misc/config';
 import { useLastQuery } from '../misc/custom-hook';
 import { SearchInput , RadioInputsWrapper, SearchButtonWrapper} from './Home.styled';
-import CustomRadio from '../components/CustomRadio';
+
 // eslint-disable-next-line react/function-component-definition
 const Home = () => {
   const [input, setInput] = useLastQuery();
@@ -70,29 +70,30 @@ const Home = () => {
       <RadioInputsWrapper>
         <div> 
 
-           <CustomRadio
-           label = "Shows"
+          <label htmlFor="shows-search">
+          Shows
+          <input
             id="shows-search"
             type="radio"
             value="shows"
             checked={isShowsSearch}
             onChange={onRadioChange}
-          
             />
+        </label>
             </div>
 
            <div>
 
-
-        <CustomRadio
-         label = "Actors"
-         id="actors-search"
+        <label htmlFor="actors-search">
+          Actors
+          <input
+            id="actors-search"
             type="radio"
             value="people"
             checked={!isShowsSearch}
             onChange={onRadioChange}
-         />
-       
+            />
+        </label>
           </div>
       </RadioInputsWrapper>
       <SearchButtonWrapper>
